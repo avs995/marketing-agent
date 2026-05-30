@@ -1,0 +1,1206 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Бесплатный разбор заявок для застройщиков частных домов</title>
+  <meta name="description" content="Разбор цепочки привлечения для застройщиков частных домов: оффер, реклама, квиз или лидформа, обработка менеджером и конверсия в консультацию или замер.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Заявки есть, но до консультаций доходит мало?">
+  <meta property="og:description" content="Бесплатный разбор цепочки привлечения за 15–20 минут для застройщиков частных домов. Найдем 2–3 точки роста без громких обещаний и давления.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:url" content="https://example.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f3ea;
+      --bg-soft: #fffaf1;
+      --surface: #ffffff;
+      --surface-warm: #fbf6ec;
+      --ink: #1b211d;
+      --muted: #626a63;
+      --muted-2: #848a82;
+      --line: #e4dccd;
+      --accent: #215f4b;
+      --accent-dark: #123d31;
+      --accent-soft: #e2efe8;
+      --sand: #eadfcb;
+      --orange: #b9642d;
+      --orange-soft: #f3dfcf;
+      --danger: #8f3f2e;
+      --shadow: 0 22px 70px rgba(20, 28, 22, .12);
+      --shadow-soft: 0 12px 38px rgba(20, 28, 22, .08);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --container: 1160px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(33, 95, 75, .13), transparent 32rem),
+        radial-gradient(circle at 95% 10%, rgba(185, 100, 45, .13), transparent 28rem),
+        linear-gradient(180deg, #f8f3ea 0%, #f5efe4 42%, #fbf7ef 100%);
+      font-size: 16px;
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(27, 33, 29, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(27, 33, 29, .035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.55), transparent 68%);
+    }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(var(--container), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 16px;
+      top: -100px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--accent-dark);
+      color: white;
+      text-decoration: none;
+      transition: top .2s ease;
+    }
+
+    .skip-link:focus { top: 16px; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(228, 220, 205, .78);
+      background: rgba(247, 243, 234, .88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 850;
+      letter-spacing: -.04em;
+    }
+
+    .brand__mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      box-shadow: 0 12px 28px rgba(33, 95, 75, .24);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .nav__links a {
+      text-decoration: none;
+      transition: color .18s ease;
+    }
+
+    .nav__links a:hover,
+    .nav__links a:focus-visible { color: var(--ink); }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 14px 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      line-height: 1.1;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 16px 34px rgba(33, 95, 75, .22);
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      background: var(--accent-dark);
+      box-shadow: 0 20px 42px rgba(33, 95, 75, .28);
+    }
+
+    .button--ghost {
+      background: rgba(255, 255, 255, .62);
+      color: var(--ink);
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .button--ghost:hover,
+    .button--ghost:focus-visible {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .button--light {
+      background: #fff;
+      color: var(--accent-dark);
+      box-shadow: none;
+    }
+
+    .button--light:hover,
+    .button--light:focus-visible {
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      box-shadow: none;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      width: fit-content;
+      margin: 0 0 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(33, 95, 75, .16);
+      background: rgba(226, 239, 232, .76);
+      color: var(--accent-dark);
+      font-size: 13px;
+      font-weight: 820;
+    }
+
+    .pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: var(--orange);
+      box-shadow: 0 0 0 6px rgba(185, 100, 45, .14);
+    }
+
+    .hero {
+      position: relative;
+      padding: 82px 0 54px;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(350px, .92fr);
+      gap: 46px;
+      align-items: center;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 820px;
+      margin-bottom: 22px;
+      font-size: clamp(44px, 7vw, 84px);
+      line-height: .95;
+      letter-spacing: -.075em;
+    }
+
+    .lead {
+      max-width: 720px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.48;
+    }
+
+    .hero__actions,
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .hero__note {
+      max-width: 660px;
+      margin: 18px 0 0;
+      color: var(--muted-2);
+      font-size: 14px;
+    }
+
+    .hero-panel {
+      position: relative;
+      padding: 22px;
+      border: 1px solid rgba(228, 220, 205, .9);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, .62);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: auto -46px -40px auto;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: rgba(185, 100, 45, .14);
+      filter: blur(2px);
+      z-index: -1;
+    }
+
+    .scorecard {
+      border-radius: 26px;
+      overflow: hidden;
+      background: var(--accent-dark);
+      color: #fff;
+    }
+
+    .scorecard__header {
+      padding: 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid rgba(255,255,255,.13);
+    }
+
+    .metric small {
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(255,255,255,.62);
+      font-size: 13px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 36px;
+      line-height: .95;
+      letter-spacing: -.05em;
+    }
+
+    .scorecard__body {
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .leak-row {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .leak-row b {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 11px;
+      background: rgba(255,255,255,.12);
+      color: #d9efe3;
+      font-size: 13px;
+    }
+
+    .leak-row strong {
+      display: block;
+      line-height: 1.15;
+    }
+
+    .leak-row span {
+      display: block;
+      color: rgba(255,255,255,.62);
+      font-size: 13px;
+    }
+
+    .leak-row em {
+      color: #ffd0a4;
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 850;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .panel-note {
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-weight: 760;
+    }
+
+    .trust-strip {
+      padding: 12px 0 50px;
+    }
+
+    .trust-strip__inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .trust-item {
+      min-height: 104px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.54);
+    }
+
+    .trust-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-dark);
+      font-size: 22px;
+      letter-spacing: -.04em;
+    }
+
+    .trust-item span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section {
+      padding: 76px 0;
+    }
+
+    .section--dark {
+      background: var(--accent-dark);
+      color: #fff;
+    }
+
+    .section--soft {
+      background: rgba(255, 250, 241, .65);
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 34px;
+    }
+
+    .section-head--center {
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      margin-bottom: 14px;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .section-head p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .section--dark .section-head p,
+    .section--dark .muted { color: rgba(255,255,255,.68); }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, .68);
+      box-shadow: 0 1px 0 rgba(255,255,255,.55) inset;
+    }
+
+    .card--white { background: #fff; }
+
+    .card__icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 15px;
+      background: var(--orange-soft);
+      color: var(--danger);
+      font-weight: 900;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      line-height: 1.16;
+      letter-spacing: -.025em;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .solution {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .solution__panel {
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      background: var(--accent-dark);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .solution__panel h2 {
+      margin-bottom: 16px;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1;
+      letter-spacing: -.06em;
+    }
+
+    .solution__panel p {
+      color: rgba(255,255,255,.74);
+      font-size: 18px;
+    }
+
+    .number-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .number-list li {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.7);
+    }
+
+    .number-list b {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .number-list strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .number-list span {
+      color: var(--muted);
+    }
+
+    .diagnostics-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .diagnostic-step {
+      position: relative;
+      min-height: 190px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 22px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .diagnostic-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: 50%;
+      right: -13px;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,.44);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .diagnostic-step b {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 16px;
+      border-radius: 13px;
+      background: #fff;
+      color: var(--accent-dark);
+    }
+
+    .diagnostic-step strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .diagnostic-step span {
+      color: rgba(255,255,255,.68);
+      font-size: 14px;
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .check-card {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: #fff;
+    }
+
+    .check-card::before {
+      content: "✓";
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-weight: 900;
+    }
+
+    .check-card h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .check-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .outcome-wrap {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .offer-card {
+      position: sticky;
+      top: 104px;
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .offer-card h2 {
+      margin-bottom: 14px;
+      font-size: clamp(30px, 4.6vw, 52px);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+
+    .offer-card p { color: var(--muted); }
+
+    .offer-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .offer-meta div {
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--accent-soft);
+    }
+
+    .offer-meta b {
+      display: block;
+      color: var(--accent-dark);
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .offer-meta span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .outcomes {
+      display: grid;
+      gap: 12px;
+    }
+
+    .outcome {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 14px;
+      padding: 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+    }
+
+    .outcome b {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .outcome strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .outcome span { color: var(--muted); }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .audience-card {
+      padding: 26px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.07);
+    }
+
+    .audience-card h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      line-height: 1.15;
+    }
+
+    .audience-card p {
+      color: rgba(255,255,255,.7);
+      margin-bottom: 16px;
+    }
+
+    .audience-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(255,255,255,.78);
+    }
+
+    .audience-card li + li { margin-top: 8px; }
+
+    .difference {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .compare-card {
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .compare-card--accent {
+      background: var(--accent-soft);
+      border-color: rgba(33, 95, 75, .18);
+    }
+
+    .compare-card h3 {
+      margin-bottom: 18px;
+      font-size: 26px;
+      line-height: 1.12;
+      letter-spacing: -.035em;
+    }
+
+    .compare-card ul {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .compare-card li {
+      position: relative;
+      padding-left: 26px;
+      color: var(--muted);
+    }
+
+    .compare-card li::before {
+      content: "";
+      position: absolute;
+      top: .66em;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .faq-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    details {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: #fff;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 820;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    summary::after {
+      content: "+";
+      float: right;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    details[open] summary::after { content: "−"; }
+
+    details p {
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .final {
+      padding: 84px 0 96px;
+    }
+
+    .final__box {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: center;
+      padding: 38px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .final__box h2 {
+      max-width: 760px;
+      margin-bottom: 12px;
+      font-size: clamp(34px, 5.2vw, 62px);
+      line-height: .98;
+      letter-spacing: -.06em;
+    }
+
+    .final__box p {
+      max-width: 720px;
+      margin-bottom: 0;
+      color: rgba(255,255,255,.76);
+      font-size: 18px;
+    }
+
+    .site-footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    @media (max-width: 1040px) {
+      .nav__links { display: none; }
+      .hero__grid,
+      .solution,
+      .outcome-wrap,
+      .final__box {
+        grid-template-columns: 1fr;
+      }
+      .trust-strip__inner,
+      .diagnostics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .diagnostic-step:not(:last-child)::after { display: none; }
+      .offer-card { position: static; }
+    }
+
+    @media (max-width: 820px) {
+      .hero { padding-top: 56px; }
+      .section { padding: 58px 0; }
+      .cards-3,
+      .audience-grid,
+      .difference,
+      .faq-list,
+      .check-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-panel { padding: 16px; }
+      .scorecard__header { flex-direction: column; }
+      .footer-grid { flex-direction: column; }
+      h1 { font-size: clamp(40px, 13vw, 60px); }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(100% - 28px, var(--container)); }
+      .nav { min-height: 68px; }
+      .brand span:last-child { display: none; }
+      .button { width: 100%; }
+      .hero__actions, .cta-row { width: 100%; }
+      .trust-strip__inner,
+      .diagnostics-grid,
+      .offer-meta {
+        grid-template-columns: 1fr;
+      }
+      .leak-row {
+        grid-template-columns: 32px 1fr;
+      }
+      .leak-row em { grid-column: 2; }
+      .final__box,
+      .solution__panel,
+      .offer-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container nav" aria-label="Главная навигация">
+      <a class="brand" href="#top" aria-label="В начало страницы">
+        <span class="brand__mark" aria-hidden="true">Д</span>
+        <span>Диагностика заявок</span>
+      </a>
+      <nav class="nav__links" aria-label="Разделы лендинга">
+        <a href="#problem">Проблема</a>
+        <a href="#solution">Решение</a>
+        <a href="#diagnostics">Цепочка</a>
+        <a href="#check">Что проверяем</a>
+        <a href="#audience">Кому подходит</a>
+        <a href="#faq">Вопросы</a>
+      </nav>
+      <a class="button button--ghost" href="https://t.me/your_username">Записаться</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div>
+          <p class="pill">Для застройщиков частных домов</p>
+          <h1 id="hero-title">Заявки есть, но до консультаций доходит мало?</h1>
+          <p class="lead">За 15–20 минут разберем, где в вашей цепочке теряются клиенты: в оффере, рекламе, квизе, лидформе или обработке менеджером. На выходе — 2–3 конкретные точки роста без обещаний гарантированных продаж.</p>
+          <div class="hero__actions" aria-label="Основные действия">
+            <!-- Перед публикацией замените Telegram placeholder на вашу реальную ссылку. -->
+            <a class="button" href="https://t.me/your_username">Записаться на бесплатный разбор</a>
+            <a class="button button--ghost" href="#check">Посмотреть, что проверяем</a>
+          </div>
+          <p class="hero__note">Подходит, если реклама уже работает или планируется запуск, но вы хотите заранее понять, почему заявки могут не доходить до консультаций, замеров и продаж.</p>
+        </div>
+
+        <aside class="hero-panel" aria-label="Краткая схема диагностики">
+          <div class="scorecard">
+            <div class="scorecard__header">
+              <div class="metric"><small>Формат</small><strong>15–20</strong><small>минут</small></div>
+              <div class="metric"><small>Результат</small><strong>2–3</strong><small>точки роста</small></div>
+            </div>
+            <div class="scorecard__body">
+              <div class="leak-row"><b>1</b><div><strong>Оффер</strong><span>что обещаем клиенту</span></div><em>смысл</em></div>
+              <div class="leak-row"><b>2</b><div><strong>Реклама</strong><span>кого приводим</span></div><em>трафик</em></div>
+              <div class="leak-row"><b>3</b><div><strong>Квиз/лидформа</strong><span>как отсеиваем мусор</span></div><em>фильтр</em></div>
+              <div class="leak-row"><b>4</b><div><strong>Менеджер</strong><span>как быстро берется заявка</span></div><em>контакт</em></div>
+              <div class="leak-row"><b>5</b><div><strong>Консультация</strong><span>что мешает следующему шагу</span></div><em>рост</em></div>
+            </div>
+          </div>
+          <div class="panel-note">Цель не «сделать лиды дешевле любой ценой», а найти, почему нормальные заявки не становятся консультациями.</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Коротко о подходе">
+      <div class="container trust-strip__inner">
+        <div class="trust-item"><strong>Вся цепочка</strong><span>Смотрим путь от обещания в рекламе до разговора с менеджером.</span></div>
+        <div class="trust-item"><strong>Без гарантий на словах</strong><span>Не обещаем продажи, которые зависят от продукта, бюджета и отдела продаж.</span></div>
+        <div class="trust-item"><strong>По делу</strong><span>Разбор короткий: только слабые места и ближайшие действия.</span></div>
+        <div class="trust-item"><strong>Для стройки</strong><span>Учитываем длинный цикл сделки, консультации, замеры и доверие к подрядчику.</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="problem" aria-labelledby="problem-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="pill">Где обычно ломается результат</p>
+          <h2 id="problem-title">Проблема часто не только в рекламе</h2>
+          <p>Реклама может приводить обращения, но продажи не растут, если форма собирает случайных людей, менеджер поздно отвечает или клиент не понимает следующий шаг.</p>
+        </div>
+        <div class="cards-3">
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">₽</div>
+            <h3>Заявки есть, но они дорогие</h3>
+            <p>Бюджет расходуется, заявок мало, а стоимость целевого диалога оказывается выше ожидаемой.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">?</div>
+            <h3>Много мусора и ботов</h3>
+            <p>Квиз или лидформа дают контакты, но менеджеры тратят время на нецелевые обращения.</p>
+          </article>
+          <article class="card">
+            <div class="card__icon" aria-hidden="true">↘</div>
+            <h3>До консультаций доходит мало</h3>
+            <p>Заявка формально есть, но человек не выходит на связь, не видит ценности консультации или теряется в обработке.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="solution" aria-labelledby="solution-title">
+      <div class="container solution">
+        <div class="solution__panel">
+          <p class="pill">Подход</p>
+          <h2 id="solution-title">Разбираем систему, а не отдельную кнопку в рекламе</h2>
+          <p>Если смотреть только на цену заявки, легко пропустить главное: кто оставляет заявку, что он ожидает, как быстро с ним связываются и почему он не доходит до консультации или замера.</p>
+          <div class="cta-row">
+            <a class="button button--light" href="https://t.me/your_username">Записаться на бесплатный разбор</a>
+          </div>
+        </div>
+        <ol class="number-list" aria-label="Как проходит разбор">
+          <li><b>1</b><span><strong>Находим, где теряется смысл.</strong> Проверяем, совпадает ли обещание в рекламе с тем, что видит человек в форме и слышит от менеджера.</span></li>
+          <li><b>2</b><span><strong>Отделяем качество от количества.</strong> Смотрим не просто заявки, а долю целевых обращений и переходов в разговор.</span></li>
+          <li><b>3</b><span><strong>Выбираем первый шаг.</strong> Определяем, что исправлять раньше: оффер, трафик, форму, антиспам или обработку.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="diagnostics" aria-labelledby="diagnostics-title">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <p class="pill">Цепочка диагностики</p>
+          <h2 id="diagnostics-title">Оффер → реклама → квиз/лидформа → менеджер → консультация</h2>
+          <p>Проверяем каждый участок, чтобы понять, где именно заявка теряет шанс стать коммерческим разговором.</p>
+        </div>
+        <div class="diagnostics-grid">
+          <article class="diagnostic-step"><b>1</b><strong>Оффер</strong><span>Есть ли понятный повод оставить заявку, а не просто «узнать цену».</span></article>
+          <article class="diagnostic-step"><b>2</b><strong>Реклама</strong><span>Какие ожидания формируют объявления и не приводят ли они случайных людей.</span></article>
+          <article class="diagnostic-step"><b>3</b><strong>Квиз/лидформа</strong><span>Фильтрует ли форма нецелевые обращения, спам и ботов.</span></article>
+          <article class="diagnostic-step"><b>4</b><strong>Менеджер</strong><span>Как быстро заявка берется в работу и какой следующий шаг предлагается.</span></article>
+          <article class="diagnostic-step"><b>5</b><strong>Консультация</strong><span>Что мешает человеку согласиться на разговор, замер или встречу.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="check" aria-labelledby="check-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="pill">Что проверяем</p>
+          <h2 id="check-title">На разборе смотрим то, что влияет на переход в консультацию</h2>
+          <p>Не делаем вид, что проблема всегда в одном канале. Цель — быстро увидеть слабые места и не тратить бюджет на усиление дырявой цепочки.</p>
+        </div>
+        <div class="check-grid">
+          <article class="check-card"><div><h3>Соответствие оффера и рекламы</h3><p>Понятно ли, почему человеку стоит оставить заявку именно сейчас и что он получит после отправки формы.</p></div></article>
+          <article class="check-card"><div><h3>Качество квиза или лидформы</h3><p>Какие вопросы помогают квалифицировать клиента, а какие собирают случайные контакты.</p></div></article>
+          <article class="check-card"><div><h3>Скорость и сценарий обработки</h3><p>Как быстро менеджер выходит на связь, что говорит и как переводит заявку в следующий шаг.</p></div></article>
+          <article class="check-card"><div><h3>Показатели, которые стоит измерять</h3><p>Не только стоимость заявки, но и дозвон, долю целевых обращений, конверсию в консультацию и замер.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="outcomes" aria-labelledby="outcomes-title">
+      <div class="container outcome-wrap">
+        <aside class="offer-card">
+          <p class="pill">Бесплатный первый шаг</p>
+          <h2 id="outcomes-title">После разбора у вас будет ясность, что чинить первым</h2>
+          <p>Это не большой аудит на месяц. Это короткая диагностика, чтобы увидеть 2–3 практические точки роста в текущей цепочке.</p>
+          <div class="offer-meta" aria-label="Параметры разбора">
+            <div><b>15–20</b><span>минут</span></div>
+            <div><b>2–3</b><span>точки роста</span></div>
+          </div>
+          <a class="button" href="https://t.me/your_username">Записаться на бесплатный разбор</a>
+        </aside>
+        <div class="outcomes" aria-label="Что получите после разбора">
+          <div class="outcome"><b>1</b><span><strong>Карта слабых мест в цепочке.</strong> Где теряются заявки: в оффере, рекламе, форме, дозвоне или сценарии менеджера.</span></div>
+          <div class="outcome"><b>2</b><span><strong>2–3 точки роста.</strong> Конкретные места, которые стоит улучшить раньше остальных.</span></div>
+          <div class="outcome"><b>3</b><span><strong>Рекомендации по рекламе, форме и обработке.</strong> Что поменять в сообщении, вопросах квиза, фильтрации или следующем шаге менеджера.</span></div>
+          <div class="outcome"><b>4</b><span><strong>Понимание приоритета.</strong> Что исправлять в первую очередь, чтобы не масштабировать спам, дорогие заявки и слабую обработку.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="audience" aria-labelledby="audience-title">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <p class="pill">Кому подходит</p>
+          <h2 id="audience-title">Разбор полезен тем, кто отвечает за результат после заявки</h2>
+          <p>Один и тот же симптом видят по-разному: собственник — как слив бюджета, продажи — как плохие лиды, маркетинг — как разрыв между заявкой и сделкой.</p>
+        </div>
+        <div class="audience-grid">
+          <article class="audience-card">
+            <h3>Собственник строительной компании</h3>
+            <p>Хочет понимать, куда уходит рекламный бюджет и почему заявки не превращаются в понятный поток консультаций.</p>
+            <ul><li>видит слабые места без споров между отделами;</li><li>понимает, что исправлять первым;</li><li>не масштабирует хаос бюджетом.</li></ul>
+          </article>
+          <article class="audience-card">
+            <h3>Руководитель продаж</h3>
+            <p>Хочет меньше мусорных обращений и больше заявок, которые реально можно довести до разговора или замера.</p>
+            <ul><li>получает критерии качества заявки;</li><li>видит проблемы в скорости и сценарии;</li><li>снижает потери после формы.</li></ul>
+          </article>
+          <article class="audience-card">
+            <h3>Маркетолог или подрядчик по рекламе</h3>
+            <p>Хочет доказать ценность работы не только количеством заявок, но и движением лида к консультации.</p>
+            <ul><li>понимает, где форма портит качество;</li><li>связывает рекламу с продажами;</li><li>получает гипотезы для тестов.</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="difference" aria-labelledby="difference-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="pill">Почему это не просто реклама</p>
+          <h2 id="difference-title">Дешевле заявка — не всегда лучше для продаж</h2>
+          <p>Если оптимизировать только цену обращения, можно получить больше спама, больше нагрузки на менеджеров и меньше консультаций.</p>
+        </div>
+        <div class="difference">
+          <article class="compare-card">
+            <h3>Когда смотрят только на рекламу</h3>
+            <ul>
+              <li>целью становится снизить стоимость любой заявки;</li>
+              <li>качество обращения обсуждается уже после слива бюджета;</li>
+              <li>продажи и маркетинг спорят, кто виноват;</li>
+              <li>менеджеры обрабатывают больше мусора.</li>
+            </ul>
+          </article>
+          <article class="compare-card compare-card--accent">
+            <h3>Когда смотрят на всю цепочку</h3>
+            <ul>
+              <li>видно, где заявка теряет шанс стать консультацией;</li>
+              <li>форма и оффер помогают фильтровать нецелевых людей;</li>
+              <li>менеджер понимает следующий шаг после обращения;</li>
+              <li>решения принимаются по качеству, скорости и конверсии.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="pill">Вопросы перед разбором</p>
+          <h2 id="faq-title">Коротко о формате</h2>
+          <p>Разбор нужен, чтобы быстро понять, где искать рост. Без давления, громких обещаний и длинной подготовки.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Что нужно подготовить?</summary>
+            <p>Достаточно ссылки на рекламу или посадочную страницу, примера квиза или лидформы и примерного понимания, сколько заявок доходит до консультаций.</p>
+          </details>
+          <details>
+            <summary>Если у нас уже есть рекламный подрядчик?</summary>
+            <p>Это не мешает. Разбор помогает увидеть всю цепочку и дать гипотезы, которые можно передать текущему специалисту или команде.</p>
+          </details>
+          <details>
+            <summary>Вы гарантируете больше лидов?</summary>
+            <p>Нет. На результат влияют продукт, рынок, бюджет, отдел продаж и скорость внедрения. На разборе речь о слабых местах и практических точках роста.</p>
+          </details>
+          <details>
+            <summary>Разбор подходит, если заявок пока мало?</summary>
+            <p>Да, если уже есть рекламный бюджет или план запуска. Тогда можно заранее проверить оффер, форму и обработку, чтобы не масштабировать ошибки.</p>
+          </details>
+          <details>
+            <summary>Это аудит сайта?</summary>
+            <p>Не только. Сайт или форма — часть цепочки. Мы также смотрим рекламное обещание, качество заявки и действия менеджера после обращения.</p>
+          </details>
+          <details>
+            <summary>Что будет после бесплатного разбора?</summary>
+            <p>У вас останется понимание 2–3 точек роста. Если будет смысл работать дальше, это можно обсудить отдельно.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final" aria-labelledby="final-title">
+      <div class="container final__box">
+        <div>
+          <h2 id="final-title">Покажу, где заявки перестают становиться консультациями</h2>
+          <p>Запишитесь на бесплатный разбор на 15–20 минут. Посмотрим вашу цепочку и выберем 2–3 ближайшие точки роста.</p>
+        </div>
+        <a class="button button--light" href="https://t.me/your_username">Записаться на бесплатный разбор</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <span>Лендинг для услуги диагностики заявок застройщиков частных домов.</span>
+      <span>Перед публикацией замените временную ссылку Telegram и адрес в метатеге страницы.</span>
+    </div>
+  </footer>
+</body>
+</html>
